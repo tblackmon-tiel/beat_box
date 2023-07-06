@@ -24,4 +24,12 @@ RSpec.describe Node do
       expect(node_2.data).to eq("drop")
     end
   end
+
+  describe "#next_node" do
+    it "returns the next node in the list" do
+      node = Node.new("plop")
+
+      expect(node.next_node).to eq(nil)
+    end
+  end
 end
