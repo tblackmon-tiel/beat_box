@@ -52,6 +52,15 @@ RSpec.describe LinkedList do
 
       expect(list.count).to eq(1)
     end
+
+    it "returns the number of nodes in the list with multiple nodes" do
+      list = LinkedList.new
+
+      list.append("doop")
+      list.append("deep")
+
+      expect(list.count).to eq(2)
+    end
   end
 
   describe "#string" do

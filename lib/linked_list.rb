@@ -15,16 +15,24 @@ class LinkedList
       while current_node.next_node != nil
         current_node = current_node.next_node
       end
-      
+
       current_node.next_node = Node.new(data)
     end
   end
 
   def count
-    if @head
-      1
-    else
+    if !@head
       0
+    else
+      current_node = @head
+      node_count = 1
+
+      while current_node.next_node != nil
+        current_node = current_node.next_node
+        node_count += 1
+      end
+
+      node_count
     end
   end
 
