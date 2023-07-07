@@ -52,4 +52,10 @@ class LinkedList
       combined_node_data
     end
   end
+
+  def prepend(data)
+    new_head = Node.new(data)
+    new_head.next_node = @head
+    @head = new_head
+  end
 end
