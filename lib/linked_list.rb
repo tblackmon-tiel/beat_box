@@ -9,4 +9,12 @@ class LinkedList
   def append(data)
     @head = Node.new(data)
   end
+
+  def count
+    if @head
+      1
+    else
+      0
+    end
+  end
 end
