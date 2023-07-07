@@ -97,4 +97,18 @@ class LinkedList
 
     combined_node_data
   end
+
+  def includes?(data)
+    current_node = @head
+
+    while current_node.next_node != nil && data != current_node.data
+      current_node = current_node.next_node
+    end
+
+    if current_node.data == data
+      true
+    else
+      false
+    end
+  end
 end

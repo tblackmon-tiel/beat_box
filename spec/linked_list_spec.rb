@@ -182,4 +182,18 @@ RSpec.describe LinkedList do
       expect(list.find(5, 3)).to eq("blop")
     end
   end
+
+  describe "#includes?" do
+    it "returns a boolean identifying if an argument exists in the list" do
+      list = LinkedList.new
+
+      list.append("deep")
+      list.append("bop")
+      list.append("shu")
+      
+      expect(list.includes?("deep")).to be true
+      expect(list.includes?("bop")).to be true
+      expect(list.includes?("dep")).to be false
+    end
+  end
 end
