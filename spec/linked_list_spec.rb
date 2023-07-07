@@ -28,6 +28,18 @@ RSpec.describe LinkedList do
       expect(list.head.data).to eq("doop")
       expect(list.head.next_node).to eq(nil)
     end
+
+    it "can add more than one node to the list" do
+      list = LinkedList.new
+
+      list.append("doop")
+      list.append("deep")
+      # require 'pry'; binding.pry
+      
+      expect(list.head.data).to eq("doop")
+      expect(list.head.next_node).to be_an_instance_of(Node)
+      expect(list.head.next_node.data).to eq("deep")
+    end
   end
 
   describe "#count" do
