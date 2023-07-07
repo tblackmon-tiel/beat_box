@@ -126,12 +126,20 @@ RSpec.describe LinkedList do
       list.prepend("dop")
 
       list.insert(0, "woo")
-      require 'pry';binding.pry
+      # require 'pry';binding.pry
       expect(list.to_string).to eq("woo dop plop suu")
     end
 
     it "can handle a position larger than the size of the list" do
-      
+      list = LinkedList.new
+
+      list.append("plop")
+      list.append("suu")
+      list.prepend("dop")
+
+      list.insert(5, "woo")
+
+      expect(list.to_string).to eq("dop plop suu woo")
     end
   end
 end
