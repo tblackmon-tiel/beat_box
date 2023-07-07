@@ -42,7 +42,8 @@ class LinkedList
       nil
     else
       current_node = @head
-      combined_node_data = @head.data
+      combined_node_data = ""
+      combined_node_data << @head.data
 
       while current_node.next_node != nil
         current_node = current_node.next_node
@@ -57,5 +58,22 @@ class LinkedList
     new_head = Node.new(data)
     new_head.next_node = @head
     @head = new_head
+  end
+
+  def insert(position, data)
+    if position == 0
+      prepend(data)
+    else
+      current_node = @head
+      node_counter = 1
+
+      while current_node.next_node != nil && node_counter < position
+        current_node = current_node.next_node
+      end
+
+      new_node = Node.new(data)
+      new_node.next_node = current_node.next_node
+      current_node.next_node = new_node  
+    end
   end
 end
