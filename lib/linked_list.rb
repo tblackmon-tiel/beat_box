@@ -76,4 +76,25 @@ class LinkedList
       current_node.next_node = new_node  
     end
   end
+
+  def find(position, range)
+    current_node = @head
+    current_position = 0
+    range_counter = 1
+    combined_node_data = ""
+
+    while current_node.next_node != nil && current_position < position
+      current_node = current_node.next_node
+      current_position += 1
+    end
+
+    combined_node_data << current_node.data
+    while current_node.next_node != nil && range_counter < range
+      current_node = current_node.next_node
+      combined_node_data << " #{current_node.data}"
+      range_counter += 1
+    end
+
+    combined_node_data
+  end
 end

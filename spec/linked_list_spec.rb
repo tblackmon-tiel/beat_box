@@ -142,4 +142,44 @@ RSpec.describe LinkedList do
       expect(list.to_string).to eq("dop plop suu woo")
     end
   end
+
+  describe "#find" do
+    it "can return the node data at a given position" do
+      list = LinkedList.new
+
+      list.append("deep")
+      list.append("woo")
+      list.append("shi")
+      list.append("shu")
+      list.append("blop")
+
+      expect(list.find(2, 1)).to eq("shi")
+    end
+
+    it "can return multiple nodes data starting at a position" do
+      list = LinkedList.new
+
+      list.append("deep")
+      list.append("woo")
+      list.append("shi")
+      list.append("shu")
+      list.append("blop")
+
+      expect(list.find(1, 3)).to eq("woo shi shu")
+    end
+    
+    it "does not error if given an inaccessible position/range" do
+      list = LinkedList.new
+  
+      list.append("deep")
+      list.append("woo")
+      list.append("shi")
+      list.append("shu")
+      list.append("blop")
+  
+      expect(list.find(10,1)).to eq("blop")
+      expect(list.find(2, 5)).to eq("shi shu blop")
+      expect(list.find(5, 3)).to eq("blop")
+    end
+  end
 end
