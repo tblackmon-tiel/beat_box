@@ -87,4 +87,129 @@ RSpec.describe LinkedList do
       expect(list.to_string).to eq("doop deep")
     end
   end
+
+  describe "#prepend" do
+    it "can add a node to the front of the list" do
+      list = LinkedList.new
+
+      list.append("plop")
+      expect(list.to_string).to eq("plop")
+      
+      list.append("suu")
+      expect(list.to_string).to eq("plop suu")
+      
+      list.prepend("dop")
+
+      expect(list.to_string).to eq("dop plop suu")
+      expect(list.count).to eq(3)
+    end
+  end
+
+  describe "#insert" do
+    it "can insert a new node to a specific index in the list" do
+      list = LinkedList.new
+
+      list.append("plop")
+      list.append("suu")
+      list.prepend("dop")
+
+      list.insert(1, "woo")
+
+      expect(list.to_string).to eq("dop woo plop suu")
+    end
+
+    it "can insert a new node to the front of the list" do
+      list = LinkedList.new
+
+      list.append("plop")
+      list.append("suu")
+      list.prepend("dop")
+
+      list.insert(0, "woo")
+      # require 'pry';binding.pry
+      expect(list.to_string).to eq("woo dop plop suu")
+    end
+
+    it "can handle a position larger than the size of the list" do
+      list = LinkedList.new
+
+      list.append("plop")
+      list.append("suu")
+      list.prepend("dop")
+
+      list.insert(5, "woo")
+
+      expect(list.to_string).to eq("dop plop suu woo")
+    end
+  end
+
+  describe "#find" do
+    it "can return the node data at a given position" do
+      list = LinkedList.new
+
+      list.append("deep")
+      list.append("woo")
+      list.append("shi")
+      list.append("shu")
+      list.append("blop")
+
+      expect(list.find(2, 1)).to eq("shi")
+    end
+
+    it "can return multiple nodes data starting at a position" do
+      list = LinkedList.new
+
+      list.append("deep")
+      list.append("woo")
+      list.append("shi")
+      list.append("shu")
+      list.append("blop")
+
+      expect(list.find(1, 3)).to eq("woo shi shu")
+    end
+    
+    it "does not error if given an inaccessible position/range" do
+      list = LinkedList.new
+  
+      list.append("deep")
+      list.append("woo")
+      list.append("shi")
+      list.append("shu")
+      list.append("blop")
+  
+      expect(list.find(10,1)).to eq("blop")
+      expect(list.find(2, 5)).to eq("shi shu blop")
+      expect(list.find(5, 3)).to eq("blop")
+    end
+  end
+
+  describe "#includes?" do
+    it "returns a boolean identifying if an argument exists in the list" do
+      list = LinkedList.new
+
+      list.append("deep")
+      list.append("bop")
+      list.append("shu")
+      
+      expect(list.includes?("deep")).to be true
+      expect(list.includes?("bop")).to be true
+      expect(list.includes?("dep")).to be false
+    end
+  end
+
+  describe "#pop" do
+    it "removes and returns the final object in the list" do
+      list = LinkedList.new
+
+      list.append("deep")
+      list.append("woo")
+      list.append("shi")
+      list.append("shu")
+      list.append("blop")
+
+      expect(list.pop).to eq("blop")
+      expect(list.pop).to eq("shu")
+      expect(list.to_string).to eq("deep woo shi")
+    end
+  end
 end

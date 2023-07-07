@@ -42,7 +42,8 @@ class LinkedList
       nil
     else
       current_node = @head
-      combined_node_data = @head.data
+      combined_node_data = ""
+      combined_node_data << @head.data
 
       while current_node.next_node != nil
         current_node = current_node.next_node
@@ -51,5 +52,82 @@ class LinkedList
 
       combined_node_data
     end
+  end
+
+  def prepend(data)
+    new_head = Node.new(data)
+    new_head.next_node = @head
+    @head = new_head
+  end
+
+  def insert(position, data)
+    if position == 0
+      prepend(data)
+    else
+      current_node = @head
+      node_counter = 1
+
+      while current_node.next_node != nil && node_counter < position
+        current_node = current_node.next_node
+      end
+
+      new_node = Node.new(data)
+      new_node.next_node = current_node.next_node
+      current_node.next_node = new_node  
+    end
+  end
+
+  def find(position, range)
+    current_node = @head
+    current_position = 0
+    range_counter = 1
+    combined_node_data = ""
+
+    while current_node.next_node != nil && current_position < position
+      current_node = current_node.next_node
+      current_position += 1
+    end
+
+    combined_node_data << current_node.data
+    while current_node.next_node != nil && range_counter < range
+      current_node = current_node.next_node
+      combined_node_data << " #{current_node.data}"
+      range_counter += 1
+    end
+
+    combined_node_data
+  end
+
+  def includes?(data)
+    current_node = @head
+
+    while current_node.next_node != nil && data != current_node.data
+      current_node = current_node.next_node
+    end
+
+    if current_node.data == data
+      true
+    else
+      false
+    end
+  end
+
+  def pop
+    current_node = @head
+
+    # this could use the count method instead
+    while current_node.next_node != nil
+      current_node = current_node.next_node
+    end
+
+    final_node = current_node
+    current_node = @head
+
+    while current_node.next_node != final_node
+      current_node = current_node.next_node
+    end
+
+    current_node.next_node = nil
+    final_node.data
   end
 end
