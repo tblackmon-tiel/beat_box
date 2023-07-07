@@ -36,4 +36,15 @@ RSpec.describe BeatBox do
       expect(bb.list.head.next_node.data).to eq("doo")
     end
   end
+
+  describe "#count" do
+    it "returns the length of the linkedlist" do
+      bb = BeatBox.new
+
+      bb.append("deep doo ditt")
+      bb.append("woo hoo shu")
+
+      expect(bb.count).to eq(6)
+    end
+  end
 end
