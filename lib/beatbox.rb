@@ -5,6 +5,10 @@ class BeatBox
   end
 
   def append(data)
-    @list.append(data)
+    split_data = data.split
+
+    split_data.each do |data|
+      @list.append(data)
+    end
   end
 end

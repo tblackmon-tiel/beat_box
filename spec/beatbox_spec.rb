@@ -26,5 +26,14 @@ RSpec.describe BeatBox do
 
       expect(bb.list.head.data).to eq("deep")
     end
+
+    it "can append multiple nodes at the same time" do
+      bb = BeatBox.new
+
+      bb.append("deep doo ditt")
+
+      expect(bb.list.head.data).to eq("deep")
+      expect(bb.list.head.next_node.data).to eq("doo")
+    end
   end
 end
