@@ -6,6 +6,7 @@ class LinkedList
     @head = nil
   end
 
+  # refactor append, count, to_string to work off one method returning a hash?
   def append(data)
     if !@head
       @head = Node.new(data)
@@ -37,6 +38,18 @@ class LinkedList
   end
 
   def to_string
-    @head.data if @head
+    if !@head
+      nil
+    else
+      current_node = @head
+      combined_node_data = @head.data
+
+      while current_node.next_node != nil
+        current_node = current_node.next_node
+        combined_node_data << " #{current_node.data}"
+      end
+
+      combined_node_data
+    end
   end
 end

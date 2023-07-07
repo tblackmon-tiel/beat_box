@@ -77,5 +77,14 @@ RSpec.describe LinkedList do
 
       expect(list.to_string).to eq(nil)
     end
+
+    it "returns a string of all node data with spaces inbetween" do
+      list = LinkedList.new
+
+      list.append("doop")
+      list.append("deep")
+
+      expect(list.to_string).to eq("doop deep")
+    end
   end
 end
