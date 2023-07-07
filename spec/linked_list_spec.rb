@@ -31,7 +31,7 @@ RSpec.describe LinkedList do
   end
 
   describe "#count" do
-    it "returns the number of nodes in the list" do
+    it "returns the number of nodes in the list (when there is one node)" do
       list = LinkedList.new
 
       expect(list.count).to eq(0)
@@ -39,6 +39,22 @@ RSpec.describe LinkedList do
       list.append("doop")
 
       expect(list.count).to eq(1)
+    end
+  end
+
+  describe "#string" do
+    it "returns heads data as a string (when there is one node)" do
+      list = LinkedList.new
+
+      list.append("doop")
+
+      expect(list.to_string).to eq("doop")
+    end
+
+    it "does not break if there are no nodes" do
+      list = LinkedList.new
+
+      expect(list.to_string).to eq(nil)
     end
   end
 end
