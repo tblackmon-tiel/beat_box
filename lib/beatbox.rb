@@ -2,6 +2,7 @@ class BeatBox
   attr_reader :list
   def initialize()
     @list = LinkedList.new
+    @valid_beats = generate_valid_beats
   end
 
   def append(data)
@@ -22,5 +23,9 @@ class BeatBox
 
   def all
     @list.to_string
+  end
+
+  def generate_valid_beats
+
   end
 end

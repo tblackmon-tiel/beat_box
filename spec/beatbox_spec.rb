@@ -67,4 +67,14 @@ RSpec.describe BeatBox do
       expect(bb.all).to eq("deep doo ditt woo hoo shu")
     end
   end
+
+  describe "#generate_valid_beats" do
+    it "reads valid_beats.txt and returns an array of its values" do
+      bb = BeatBox.new
+
+      # worth noting this test fails if the file is edited
+      expect(bb.valid_beats).to eq(["tee", "dee", "deep", "bop", "boop",
+      "la", "na", "woo", "hoo", "shu", "ditt", "doo"])
+    end
+  end
 end
