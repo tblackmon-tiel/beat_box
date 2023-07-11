@@ -6,6 +6,10 @@ class LinkedList
     @head = nil
   end
 
+  # runs through the linked list and returns a value based on the argument provided.
+  # "count" returns the length of the list
+  # "string" returns a string of all node data
+  # no argument returns the final node in the list
   def navigate_list(optional_request = nil)
     current_node = @head
     node_count = 1
