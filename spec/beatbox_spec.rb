@@ -87,7 +87,7 @@ RSpec.describe BeatBox do
 
       # worth noting this test fails if the file is edited
       expect(bb.valid_beats).to eq(["tee", "dee", "deep", "bop", "boop",
-      "la", "na", "woo", "hoo", "shu", "ditt", "doo"])
+      "la", "na", "woo", "hoo", "shu", "ditt", "doo", "dop"])
     end
   end
 
@@ -105,12 +105,12 @@ RSpec.describe BeatBox do
     it "sets the rate at which play is read" do
       bb = BeatBox.new("deep dop dop deep")
 
-      expect(bb.play).to eq(2)
+      expect(bb.play).to eq(4)
 
       bb.rate = 100
 
       expect(bb.rate).to eq(100)
-      expect(bb.play).to eq(2)
+      expect(bb.play).to eq(4)
     end
   end
 end
