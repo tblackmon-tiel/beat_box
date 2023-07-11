@@ -139,4 +139,17 @@ RSpec.describe BeatBox do
       expect(bb.rate).to eq(500)
     end
   end
+
+  describe "#reset_voice" do
+    it "resets voice to the default value of 'Boing'" do
+      bb = BeatBox.new("deep dop dop deep")
+
+      bb.voice = "Daniel"
+      expect(bb.voice).to eq("Daniel")
+
+      bb.reset_voice
+
+      expect(bb.voice).to eq("Boing")
+    end
+  end
 end
