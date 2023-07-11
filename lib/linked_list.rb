@@ -9,14 +9,19 @@ class LinkedList
   def navigate_list(optional_request = nil)
     current_node = @head
     node_count = 1
+    combined_node_data = ""
+    combined_node_data << "#{current_node.data}"
 
     while current_node.next_node != nil
       current_node = current_node.next_node
       node_count += 1
+      combined_node_data << " #{current_node.data}"
     end
 
     if optional_request == "count"
       node_count
+    elsif optional_request == "string"
+      combined_node_data
     else
       current_node
     end
@@ -43,16 +48,7 @@ class LinkedList
     if !@head
       nil
     else
-      current_node = @head
-      combined_node_data = ""
-      combined_node_data << @head.data
-
-      while current_node.next_node != nil
-        current_node = current_node.next_node
-        combined_node_data << " #{current_node.data}"
-      end
-
-      combined_node_data
+      navigate_list("string")
     end
   end
 

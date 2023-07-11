@@ -226,7 +226,7 @@ RSpec.describe LinkedList do
       expect(list.navigate_list.data).to eq("blop")
     end
 
-    it "returns the list length if passed an argument of 'true'" do
+    it "returns the list length if passed an argument of 'count'" do
       list = LinkedList.new
 
       list.append("deep")
@@ -236,6 +236,18 @@ RSpec.describe LinkedList do
       list.append("blop")
 
       expect(list.navigate_list("count")).to eq(5)
+    end
+
+    it "returns a string of all node data concatenated if passed an argument of 'string'" do
+      list = LinkedList.new
+
+      list.append("deep")
+      list.append("woo")
+      list.append("shi")
+      list.append("shu")
+      list.append("blop")
+
+      expect(list.navigate_list("string")).to eq("deep woo shi shu blop")
     end
   end
 end
