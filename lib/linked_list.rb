@@ -97,17 +97,20 @@ class LinkedList
   end
 
   def includes?(data)
-    current_node = @head
+    navigate_list("string").include?(data)
 
-    while current_node.next_node != nil && data != current_node.data
-      current_node = current_node.next_node
-    end
+    # Ruby has a built in function to check if a string includes a substring... if that's not valid:
+    # current_node = @head
 
-    if current_node.data == data
-      true
-    else
-      false
-    end
+    # while current_node.next_node != nil && data != current_node.data
+    #   current_node = current_node.next_node
+    # end
+
+    # if current_node.data == data
+    #   true
+    # else
+    #   false
+    # end
   end
 
   def pop
