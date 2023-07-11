@@ -90,4 +90,14 @@ RSpec.describe BeatBox do
       "la", "na", "woo", "hoo", "shu", "ditt", "doo"])
     end
   end
+
+  describe "#initialize_with_data" do
+    it "appends data passed during instantiation" do
+      bb = BeatBox.new("deep")
+      bb2 = BeatBox.new("deep doo Mississippi")
+
+      expect(bb.list.head.data).to eq("deep")
+      expect(bb2.all).to eq("deep doo")
+    end
+  end
 end
