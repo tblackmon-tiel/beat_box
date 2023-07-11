@@ -27,7 +27,6 @@ class LinkedList
     end
   end
 
-  # refactor append, count, to_string to work off one method returning a hash?
   def append(data)
     if !@head
       @head = Node.new(data)
