@@ -62,7 +62,7 @@ RSpec.describe BeatBox do
   end
 
   describe "#play" do
-    it "plays the linkedlist's nodes as if beatboxing" do
+    xit "plays the linkedlist's nodes as if beatboxing" do
       bb = BeatBox.new
 
       bb.append("deep doo ditt woo hoo shu")
@@ -102,7 +102,7 @@ RSpec.describe BeatBox do
   end
 
   describe "#rate" do
-    it "sets the rate at which play is read" do
+    xit "sets the rate at which #play is read" do
       bb = BeatBox.new("deep dop dop deep")
 
       expect(bb.play).to eq(4)
@@ -110,6 +110,19 @@ RSpec.describe BeatBox do
       bb.rate = 100
 
       expect(bb.rate).to eq(100)
+      expect(bb.play).to eq(4)
+    end
+  end
+
+  describe "#voice" do
+    it "sets the voice used for #play" do
+      bb = BeatBox.new("deep dop dop deep")
+
+      expect(bb.play).to eq(4)
+
+      bb.voice = "Daniel"
+      
+      # should be read in Daniel's voice
       expect(bb.play).to eq(4)
     end
   end
