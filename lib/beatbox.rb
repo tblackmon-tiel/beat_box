@@ -45,4 +45,8 @@ class BeatBox
       append(@initial_data)
     end
   end
+
+  def reset_rate
+    @rate = 500
+  end
 end
