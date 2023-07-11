@@ -6,18 +6,36 @@ class LinkedList
     @head = nil
   end
 
-  # refactor append, count, to_string to work off one method returning a hash?
+  # runs through the linked list and returns a value based on the argument provided.
+  # "count" returns the length of the list
+  # "string" returns a string of all node data
+  # no argument returns the final node in the list
+  def navigate_list(optional_request = nil)
+    current_node = @head
+    node_count = 1
+    combined_node_data = ""
+    combined_node_data << "#{current_node.data}"
+
+    while current_node.next_node != nil
+      current_node = current_node.next_node
+      node_count += 1
+      combined_node_data << " #{current_node.data}"
+    end
+
+    if optional_request == "count"
+      node_count
+    elsif optional_request == "string"
+      combined_node_data
+    else
+      current_node
+    end
+  end
+
   def append(data)
     if !@head
       @head = Node.new(data)
     else
-      current_node = @head
-
-      while current_node.next_node != nil
-        current_node = current_node.next_node
-      end
-
-      current_node.next_node = Node.new(data)
+      navigate_list.next_node = Node.new(data)
     end
   end
 
@@ -25,15 +43,7 @@ class LinkedList
     if !@head
       0
     else
-      current_node = @head
-      node_count = 1
-
-      while current_node.next_node != nil
-        current_node = current_node.next_node
-        node_count += 1
-      end
-
-      node_count
+      navigate_list("count")
     end
   end
 
@@ -41,16 +51,7 @@ class LinkedList
     if !@head
       nil
     else
-      current_node = @head
-      combined_node_data = ""
-      combined_node_data << @head.data
-
-      while current_node.next_node != nil
-        current_node = current_node.next_node
-        combined_node_data << " #{current_node.data}"
-      end
-
-      combined_node_data
+      navigate_list("string")
     end
   end
 
@@ -99,28 +100,24 @@ class LinkedList
   end
 
   def includes?(data)
-    current_node = @head
+    navigate_list("string").include?(data)
 
-    while current_node.next_node != nil && data != current_node.data
-      current_node = current_node.next_node
-    end
+    # Ruby has a built in function to check if a string includes a substring... if that's not valid:
+    # current_node = @head
 
-    if current_node.data == data
-      true
-    else
-      false
-    end
+    # while current_node.next_node != nil && data != current_node.data
+    #   current_node = current_node.next_node
+    # end
+
+    # if current_node.data == data
+    #   true
+    # else
+    #   false
+    # end
   end
 
   def pop
-    current_node = @head
-
-    # this could use the count method instead
-    while current_node.next_node != nil
-      current_node = current_node.next_node
-    end
-
-    final_node = current_node
+    final_node = navigate_list
     current_node = @head
 
     while current_node.next_node != final_node
