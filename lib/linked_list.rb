@@ -114,14 +114,7 @@ class LinkedList
   end
 
   def pop
-    current_node = @head
-
-    # this could use the count method instead
-    while current_node.next_node != nil
-      current_node = current_node.next_node
-    end
-
-    final_node = current_node
+    final_node = navigate_list
     current_node = @head
 
     while current_node.next_node != final_node
