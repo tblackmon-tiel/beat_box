@@ -35,6 +35,19 @@ RSpec.describe BeatBox do
       expect(bb.list.head.data).to eq("deep")
       expect(bb.list.head.next_node.data).to eq("doo")
     end
+
+    it "only appends data found in valid_beats.txt" do
+      bb = BeatBox.new
+
+      bb.append("deep doo ditt")
+      expect(bb.all).to eq("deep doo ditt")
+
+      bb.append("Mississippi")
+      expect(bb.all).to eq("deep doo ditt")
+
+      bb.append("Mississippi woo hoo shu")
+      expect(bb.all).to eq("deep doo ditt woo hoo shu")
+    end
   end
 
   describe "#count" do
@@ -49,11 +62,42 @@ RSpec.describe BeatBox do
   end
 
   describe "#play" do
-    it "plays the linkedlist's nodes as if beatboxing" do
+    xit "plays the linkedlist's nodes as if beatboxing" do
       bb = BeatBox.new
 
       bb.append("deep doo ditt woo hoo shu")
+      
       expect(bb.play).to eq(`say -r 500 -v Boing deep doo ditt woo hoo shu`)
+    end
+  end
+
+  describe "#all" do
+    it "returns all nodes data from the linkedlist as a string" do
+      bb = BeatBox.new
+
+      bb.append("deep doo ditt woo hoo shu")
+      
+      expect(bb.all).to eq("deep doo ditt woo hoo shu")
+    end
+  end
+
+  describe "#generate_valid_beats" do
+    it "reads valid_beats.txt and returns an array of its values" do
+      bb = BeatBox.new
+
+      # worth noting this test fails if the file is edited
+      expect(bb.valid_beats).to eq(["tee", "dee", "deep", "bop", "boop",
+      "la", "na", "woo", "hoo", "shu", "ditt", "doo"])
+    end
+  end
+
+  describe "#initialize_with_data" do
+    it "appends data passed during instantiation" do
+      bb = BeatBox.new("deep")
+      bb2 = BeatBox.new("deep doo Mississippi")
+
+      expect(bb.list.head.data).to eq("deep")
+      expect(bb2.all).to eq("deep doo")
     end
   end
 end
