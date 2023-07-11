@@ -122,6 +122,7 @@ RSpec.describe BeatBox do
 
       bb.voice = "Daniel"
       
+      expect(bb.voice).to eq("Daniel")
       # should be read in Daniel's voice
       expect(bb.play).to eq(4)
     end
