@@ -21,13 +21,7 @@ class LinkedList
     if !@head
       @head = Node.new(data)
     else
-      current_node = @head
-
-      while current_node.next_node != nil
-        current_node = current_node.next_node
-      end
-
-      current_node.next_node = Node.new(data)
+      navigate_list.next_node = Node.new(data)
     end
   end
 
