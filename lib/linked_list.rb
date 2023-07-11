@@ -6,6 +6,16 @@ class LinkedList
     @head = nil
   end
 
+  def navigate_list
+    current_node = @head
+
+    while current_node.next_node != nil
+      current_node = current_node.next_node
+    end
+
+    current_node
+  end
+
   # refactor append, count, to_string to work off one method returning a hash?
   def append(data)
     if !@head

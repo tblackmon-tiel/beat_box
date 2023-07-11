@@ -212,4 +212,18 @@ RSpec.describe LinkedList do
       expect(list.to_string).to eq("deep woo shi")
     end
   end
+  
+  describe "#navigate_list" do
+    it "returns the final node in the list" do
+      list = LinkedList.new
+
+      list.append("deep")
+      list.append("woo")
+      list.append("shi")
+      list.append("shu")
+      list.append("blop")
+
+      expect(list.navigate_list.data).to eq("blop")
+    end
+  end
 end
