@@ -1,9 +1,12 @@
 class BeatBox
+  attr_accessor :rate, :voice
   attr_reader :list, :valid_beats
   def initialize(initial_data = nil)
     @list = LinkedList.new
     @valid_beats = generate_valid_beats
     @initial_data = initial_data
+    @rate = 500
+    @voice = "Boing"
     
     initialize_with_data
   end
@@ -23,7 +26,8 @@ class BeatBox
   end
 
   def play
-    `say -r 500 -v Boing #{list.to_string}`
+    `say -r #{@rate} -v #{@voice} #{@list.to_string}`
+    count
   end
 
   def all
@@ -40,5 +44,13 @@ class BeatBox
     if @initial_data != nil
       append(@initial_data)
     end
+  end
+
+  def reset_rate
+    @rate = 500
+  end
+
+  def reset_voice
+    @voice = "Boing"
   end
 end

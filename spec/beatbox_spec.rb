@@ -67,7 +67,7 @@ RSpec.describe BeatBox do
 
       bb.append("deep doo ditt woo hoo shu")
       
-      expect(bb.play).to eq(`say -r 500 -v Boing deep doo ditt woo hoo shu`)
+      expect(bb.play).to eq(6)
     end
   end
 
@@ -87,7 +87,7 @@ RSpec.describe BeatBox do
 
       # worth noting this test fails if the file is edited
       expect(bb.valid_beats).to eq(["tee", "dee", "deep", "bop", "boop",
-      "la", "na", "woo", "hoo", "shu", "ditt", "doo"])
+      "la", "na", "woo", "hoo", "shu", "ditt", "doo", "dop"])
     end
   end
 
@@ -98,6 +98,59 @@ RSpec.describe BeatBox do
 
       expect(bb.list.head.data).to eq("deep")
       expect(bb2.all).to eq("deep doo")
+    end
+  end
+
+  describe "#rate" do
+    xit "sets the rate at which #play is read" do
+      bb = BeatBox.new("deep dop dop deep")
+
+      expect(bb.play).to eq(4)
+
+      bb.rate = 100
+
+      expect(bb.rate).to eq(100)
+      expect(bb.play).to eq(4)
+    end
+  end
+
+  describe "#voice" do
+    it "sets the voice used for #play" do
+      bb = BeatBox.new("deep dop dop deep")
+
+      expect(bb.play).to eq(4)
+
+      bb.voice = "Daniel"
+      
+      expect(bb.voice).to eq("Daniel")
+      # should be read in Daniel's voice
+      expect(bb.play).to eq(4)
+    end
+  end
+
+  describe "#reset_rate" do
+    it "resets rate to the default value of 500" do
+      bb = BeatBox.new("deep dop dop deep")
+
+      bb.rate = 100
+      expect(bb.rate).to eq(100)
+
+      bb.reset_rate
+
+      expect(bb.rate).to eq(500)
+    end
+  end
+
+  describe "#reset_voice" do
+    it "resets voice to the default value of 'Boing'" do
+      bb = BeatBox.new("deep dop dop deep")
+
+      bb.voice = "Daniel"
+      expect(bb.voice).to eq("Daniel")
+
+      bb.reset_voice
+
+      expect(bb.voice).to eq("Boing")
     end
   end
 end
