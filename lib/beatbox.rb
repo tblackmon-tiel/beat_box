@@ -1,5 +1,5 @@
 class BeatBox
-  attr_reader :list
+  attr_reader :list, :valid_beats
   def initialize()
     @list = LinkedList.new
     @valid_beats = generate_valid_beats
@@ -26,6 +26,8 @@ class BeatBox
   end
 
   def generate_valid_beats
-
+    beats_from_file = []
+    File.foreach("./lib/valid_beats.txt") {|line| beats_from_file << line.chomp!}
+    beats_from_file
   end
 end
