@@ -9,7 +9,9 @@ class BeatBox
     split_data = data.split
 
     split_data.each do |data|
-      @list.append(data)
+      if @valid_beats.include?(data)
+        @list.append(data)
+      end
     end
   end
 

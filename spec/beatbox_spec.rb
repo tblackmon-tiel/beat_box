@@ -35,6 +35,19 @@ RSpec.describe BeatBox do
       expect(bb.list.head.data).to eq("deep")
       expect(bb.list.head.next_node.data).to eq("doo")
     end
+
+    it "only appends data found in valid_beats.txt" do
+      bb = BeatBox.new
+
+      bb.append("deep doo ditt")
+      expect(bb.all).to eq("deep doo ditt")
+
+      bb.append("Mississippi")
+      expect(bb.all).to eq("deep doo ditt")
+
+      bb.append("Mississippi woo hoo shu")
+      expect(bb.all).to eq("deep doo ditt woo hoo shu")
+    end
   end
 
   describe "#count" do
