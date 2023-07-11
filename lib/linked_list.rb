@@ -6,14 +6,20 @@ class LinkedList
     @head = nil
   end
 
-  def navigate_list
+  def navigate_list(optional_request = nil)
     current_node = @head
+    node_count = 1
 
     while current_node.next_node != nil
       current_node = current_node.next_node
+      node_count += 1
     end
 
-    current_node
+    if optional_request == "count"
+      node_count
+    else
+      current_node
+    end
   end
 
   # refactor append, count, to_string to work off one method returning a hash?
@@ -29,15 +35,7 @@ class LinkedList
     if !@head
       0
     else
-      current_node = @head
-      node_count = 1
-
-      while current_node.next_node != nil
-        current_node = current_node.next_node
-        node_count += 1
-      end
-
-      node_count
+      navigate_list("count")
     end
   end
 

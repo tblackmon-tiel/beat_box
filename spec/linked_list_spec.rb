@@ -225,5 +225,17 @@ RSpec.describe LinkedList do
 
       expect(list.navigate_list.data).to eq("blop")
     end
+
+    it "returns the list length if passed an argument of 'true'" do
+      list = LinkedList.new
+
+      list.append("deep")
+      list.append("woo")
+      list.append("shi")
+      list.append("shu")
+      list.append("blop")
+
+      expect(list.navigate_list("count")).to eq(5)
+    end
   end
 end
