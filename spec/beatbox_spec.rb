@@ -100,4 +100,17 @@ RSpec.describe BeatBox do
       expect(bb2.all).to eq("deep doo")
     end
   end
+
+  describe "#rate" do
+    it "sets the rate at which play is read" do
+      bb = BeatBox.new("deep dop dop deep")
+
+      expect(bb.play).to eq(2)
+
+      bb.rate = 100
+
+      expect(bb.rate).to eq(100)
+      expect(bb.play).to eq(2)
+    end
+  end
 end
